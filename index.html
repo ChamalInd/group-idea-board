@@ -25,11 +25,11 @@
 
         .container {
             background-color: #ffffff;
-            padding: 40px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             max-width: 900px;
             width: 100%;
+            overflow: hidden;
             transition: transform 0.3s ease;
         }
 
@@ -37,13 +37,35 @@
             transform: translateY(-5px);
         }
 
-        h1 {
+        /* Header styles */
+        .header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 30px 40px;
             text-align: center;
-            color: #1e3a8a;
-            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header .logo {
             font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
             font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 10px;
+        }
+
+        .idea-counter {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 40px;
         }
 
         /* Table styles */
@@ -116,6 +138,12 @@
             min-height: 100px;
         }
 
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+        }
+
         button {
             background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
@@ -141,15 +169,40 @@
             transform: translateY(0);
         }
 
+        .clear-btn {
+            background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+        }
+
+        .clear-btn:hover {
+            background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #f8fafc;
+            padding: 20px 40px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+            color: #6b7280;
+            font-size: 0.9em;
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
                 margin: 10px;
             }
 
-            h1 {
+            .header {
+                padding: 20px;
+            }
+
+            .header h1 {
                 font-size: 2em;
+            }
+
+            .main-content {
+                padding: 20px;
             }
 
             th, td {
@@ -160,32 +213,59 @@
             .add-idea {
                 padding: 20px;
             }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .footer {
+                padding: 15px 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>IDEA BOARD</h1>
-        <table id="ideasTable">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Idea</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Ideas will be dynamically added here -->
-            </tbody>
-        </table>
-        <div class="add-idea">
-            <h2>Add Your Idea</h2>
-            <input type="text" id="nameInput" placeholder="Your Name" required>
-            <textarea id="ideaInput" placeholder="Describe your idea..." rows="4" required></textarea>
-            <button onclick="addIdea()">Add Idea</button>
-        </div>
+        <header class="header">
+            <div class="logo">💡</div>
+            <h1>IDEA BOARD</h1>
+            <div class="idea-counter">Total Ideas: <span id="ideaCount">0</span></div>
+        </header>
+        <main class="main-content">
+            <table id="ideasTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Idea</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Ideas will be dynamically added here -->
+                </tbody>
+            </table>
+            <div class="add-idea">
+                <h2>Add Your Idea</h2>
+                <input type="text" id="nameInput" placeholder="Your Name" required>
+                <textarea id="ideaInput" placeholder="Describe your idea..." rows="4" required></textarea>
+                <div class="button-group">
+                    <button onclick="addIdea()">Add Idea</button>
+                    <button class="clear-btn" onclick="clearInputs()">Clear</button>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2026 Group Idea Board. Share your brilliant ideas!</p>
+        </footer>
     </div>
 
     <script>
+        let ideaCount = 0;
+
+        // Function to update the idea counter
+        function updateCounter() {
+            document.getElementById('ideaCount').textContent = ideaCount;
+        }
+
         // Function to add a new idea to the table
         function addIdea() {
             // Get input values and trim whitespace
@@ -209,12 +289,21 @@
             nameCell.textContent = name;
             ideaCell.textContent = idea;
 
+            // Increment counter and update display
+            ideaCount++;
+            updateCounter();
+
             // Clear input fields
-            document.getElementById('nameInput').value = '';
-            document.getElementById('ideaInput').value = '';
+            clearInputs();
 
             // Optional: Scroll to the new idea
             newRow.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to clear input fields
+        function clearInputs() {
+            document.getElementById('nameInput').value = '';
+            document.getElementById('ideaInput').value = '';
         }
 
         // Allow adding idea with Enter key in textarea
