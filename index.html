@@ -101,6 +101,18 @@
             transition: background-color 0.2s ease;
         }
 
+        /* Integrated Idea Cell Content */
+        .idea-cell-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .idea-text {
+            flex: 1;
+        }
+
         /* Add Idea section */
         .add-idea {
             margin-top: 40px;
@@ -177,6 +189,28 @@
             background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
         }
 
+        .delete-btn {
+            background: transparent;
+            color: #dc2626;
+            padding: 8px;
+            font-size: 18px;
+            box-shadow: none;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .delete-btn:hover {
+            background: rgba(220, 38, 38, 0.1);
+            transform: scale(1.15);
+            box-shadow: none;
+        }
+
         /* Footer styles */
         .footer {
             background-color: #f8fafc;
@@ -235,7 +269,7 @@
             <table id="ideasTable">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th style="width: 30%;">Name</th>
                         <th>Idea</th>
                     </tr>
                 </thead>
@@ -282,12 +316,32 @@
             const tableBody = document.querySelector('#ideasTable tbody');
             const newRow = tableBody.insertRow();
 
-            // Create cells and set content
+            // Create Name cell
             const nameCell = newRow.insertCell(0);
-            const ideaCell = newRow.insertCell(1);
-
             nameCell.textContent = name;
-            ideaCell.textContent = idea;
+
+            // Create Idea cell with integrated delete button
+            const ideaCell = newRow.insertCell(1);
+            
+            // Container for text and icon
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'idea-cell-content';
+            
+            const textSpan = document.createElement('span');
+            textSpan.className = 'idea-text';
+            textSpan.textContent = idea;
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML = '🗑️';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.title = 'Delete Idea';
+            deleteBtn.onclick = function() {
+                deleteIdea(newRow);
+            };
+            
+            contentDiv.appendChild(textSpan);
+            contentDiv.appendChild(deleteBtn);
+            ideaCell.appendChild(contentDiv);
 
             // Increment counter and update display
             ideaCount++;
@@ -298,6 +352,15 @@
 
             // Optional: Scroll to the new idea
             newRow.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Function to delete an idea
+        function deleteIdea(row) {
+            if (confirm('Are you sure you want to delete this idea?')) {
+                row.remove();
+                ideaCount--;
+                updateCounter();
+            }
         }
 
         // Function to clear input fields
