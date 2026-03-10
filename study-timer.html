@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Timer - Study Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">💡 Study Portal</div>
+        <ul class="navbar-menu">
+            <li><a href="index.html">IdeaBoard</a></li>
+            <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+            <li><a href="study-timer.html">Study Timer</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <main class="main-content single-page">
+                <!-- Study Timer Section -->
+                <section class="timer-section">
+                    <h2>⏱️ Study Timer (Pomodoro)</h2>
+                    <div class="timer-container">
+                        <div class="timer-input-group">
+                            <label>Set Timer:</label>
+                            <div class="timer-inputs">
+                                <div class="input-field">
+                                    <input type="number" id="timerMinutes" placeholder="Minutes" min="0" max="99" value="25">
+                                    <span>min</span>
+                                </div>
+                                <div class="input-field">
+                                    <input type="number" id="timerSeconds" placeholder="Seconds" min="0" max="59" value="0">
+                                    <span>sec</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="timer-display" id="timerDisplay">25:00</div>
+                        <div class="timer-buttons">
+                            <button class="start-timer-btn" id="startBtn" onclick="startTimer()">Start</button>
+                            <button class="pause-timer-btn" id="pauseBtn" onclick="pauseTimer()" style="display:none;">Pause</button>
+                            <button class="reset-timer-btn" onclick="resetTimer()">Reset</button>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2026 Study Portal. Share your brilliant ideas!</p>
+        </footer>
+    </div>
+
+    <script src="study-timer.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator - Study Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">💡 Study Portal</div>
+        <ul class="navbar-menu">
+            <li><a href="index.html">IdeaBoard</a></li>
+            <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+            <li><a href="study-timer.html">Study Timer</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="content-wrapper">
+            <main class="main-content single-page">
+                <!-- GPA Calculator Section -->
+                <section class="calculator-section">
+                    <h2>📊 GPA Calculator</h2>
+                    <div class="gpa-container">
+                        <table class="gpa-table">
+                            <thead>
+                                <tr>
+                                    <th>Course Name</th>
+                                    <th>Credits</th>
+                                    <th>Grade</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="gpaTableBody">
+                                <!-- Rows will be added dynamically -->
+                            </tbody>
+                        </table>
+                        <div class="gpa-input-buttons">
+                            <button class="add-course-btn" onclick="addCourseRow()">+ Add Course</button>
+                            <button class="calculate-gpa-btn" onclick="calculateGPA()">Calculate GPA</button>
+                        </div>
+                        <div id="gpaResult" class="gpa-result"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2026 Study Portal. Share your brilliant ideas!</p>
+        </footer>
+    </div>
+
+    <script src="gpa-calculator.js"></script>
+</body>
+</html>

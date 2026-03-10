@@ -10,23 +10,75 @@ body {
     color: #333;
     min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+}
+
+/* Navigation Bar styles */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+.navbar-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
 .container {
     background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    max-width: 900px;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 100%;
     width: 100%;
+    flex: 1;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    margin: 20px auto;
+    max-height: calc(100vh - 100px);
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 30px;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .container:hover {
-    transform: translateY(-5px);
+    transform: none;
 }
 
 /* Header styles */
@@ -36,6 +88,8 @@ body {
     padding: 30px 40px;
     text-align: center;
     position: relative;
+    margin-bottom: 30px;
+    border-radius: 8px;
 }
 
 .header .logo {
@@ -57,7 +111,13 @@ body {
 
 /* Main content */
 .main-content {
-    padding: 40px;
+    padding: 0;
+    flex: 1;
+}
+
+.main-content.single-page {
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* Table styles */
@@ -65,6 +125,8 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 40px;
+    margin-left: 0;
+    margin-right: 0;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -164,7 +226,9 @@ tbody tr:hover {
 
 /* Add Idea section */
 .add-idea {
-    margin-top: 40px;
+    margin-top: 0;
+    margin-left: 0;
+    margin-right: 0;
     padding: 30px;
     background-color: #f8fafc;
     border-radius: 10px;
@@ -240,6 +304,324 @@ button:active {
     background: linear-gradient(135deg, #b91c1c 0%, #dc2626 100%);
 }
 
+/* Sidebar styles */
+.sidebar {
+    width: 280px;
+    background-color: #f8fafc;
+    border-left: 1px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 8px;
+    height: fit-content;
+    flex-shrink: 0;
+}
+
+.sidebar-section {
+    margin-bottom: 25px;
+}
+
+.sidebar-section h2 {
+    font-size: 1.3em;
+    color: #1e3a8a;
+    margin-bottom: 15px;
+    font-weight: 600;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+.events-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.events-list li {
+    padding: 10px 0;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.95em;
+}
+
+.events-list li:last-child {
+    border-bottom: none;
+}
+
+/* GPA Calculator Section */
+.calculator-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+}
+
+.calculator-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.gpa-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+}
+
+.gpa-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    background: white;
+}
+
+.gpa-table thead {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+
+.gpa-table th {
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.gpa-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.gpa-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.gpa-table input,
+.gpa-table select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.gpa-table input:focus,
+.gpa-table select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.gpa-remove-btn {
+    background: #dc2626;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.gpa-remove-btn:hover {
+    background: #b91c1c;
+}
+
+.gpa-input-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.add-course-btn,
+.calculate-gpa-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-course-btn {
+    background: #10b981;
+    color: white;
+}
+
+.add-course-btn:hover {
+    background: #059669;
+}
+
+.calculate-gpa-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.calculate-gpa-btn:hover {
+    background: #2563eb;
+}
+
+.gpa-result {
+    background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #3b82f6;
+    margin-top: 20px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gpa-result-text {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #1e3a8a;
+    text-align: center;
+}
+
+.gpa-result-empty {
+    color: #6b7280;
+    font-size: 1em;
+    font-style: italic;
+}
+
+/* Study Timer Section */
+.timer-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+}
+
+.timer-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8em;
+    margin-bottom: 25px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.timer-container {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    text-align: center;
+}
+
+.timer-input-group {
+    margin-bottom: 30px;
+}
+
+.timer-input-group label {
+    display: block;
+    font-weight: 600;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.timer-inputs {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.input-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-field input {
+    width: 70px;
+    padding: 10px;
+    border: 2px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.input-field input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-field span {
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.timer-display {
+    font-size: 4em;
+    font-weight: 700;
+    color: #1e3a8a;
+    margin: 30px 0;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 3px;
+    background: linear-gradient(135deg, #f0f9ff 0%, #f3e8ff 100%);
+    padding: 40px;
+    border-radius: 10px;
+    border: 2px solid #3b82f6;
+}
+
+.timer-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.start-timer-btn,
+.pause-timer-btn,
+.reset-timer-btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.start-timer-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.start-timer-btn:hover {
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+    transform: translateY(-2px);
+}
+
+.pause-timer-btn {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.pause-timer-btn:hover {
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+    transform: translateY(-2px);
+}
+
+.reset-timer-btn {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.reset-timer-btn:hover {
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.3);
+    transform: translateY(-2px);
+}
+
 /* Footer styles */
 .footer {
     background-color: #f8fafc;
@@ -248,12 +630,35 @@ button:active {
     border-top: 1px solid #e2e8f0;
     color: #6b7280;
     font-size: 0.9em;
+    width: 100%;
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .navbar-menu {
+        gap: 15px;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 1px solid #e2e8f0;
+        padding: 15px;
+    }
+
     .container {
-        margin: 10px;
+        padding: 15px;
     }
 
     .header {
@@ -265,7 +670,11 @@ button:active {
     }
 
     .main-content {
-        padding: 20px;
+        padding: 0;
+    }
+
+    .main-content.single-page {
+        padding: 0;
     }
 
     th,
@@ -284,5 +693,39 @@ button:active {
 
     .footer {
         padding: 15px 20px;
+    }
+
+    .calculator-section,
+    .timer-section {
+        padding: 20px;
+    }
+
+    .timer-inputs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .timer-display {
+        font-size: 3em;
+        padding: 30px;
+    }
+
+    .timer-buttons {
+        flex-direction: column;
+    }
+
+    .start-timer-btn,
+    .pause-timer-btn,
+    .reset-timer-btn {
+        width: 100%;
+    }
+
+    .gpa-input-buttons {
+        flex-direction: column;
+    }
+
+    .add-course-btn,
+    .calculate-gpa-btn {
+        width: 100%;
     }
 }

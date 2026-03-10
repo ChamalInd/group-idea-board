@@ -3,40 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IDEA BOARD</title>
+    <title>Study Portal - IdeaBoard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-brand">💡 Study Portal</div>
+        <ul class="navbar-menu">
+            <li><a href="gpa-calculator.html">GPA Calculator</a></li>
+            <li><a href="study-timer.html">Study Timer</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
-        <header class="header">
-            <div class="logo">💡</div>
-            <h1>IDEA BOARD</h1>
-            <div class="idea-counter">Total Ideas: <span id="ideaCount">0</span></div>
-        </header>
-        <main class="main-content">
-            <table id="ideasTable">
-                <thead>
-                    <tr>
-                        <th style="width: 20%;">Name</th>
-                        <th>Idea</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Ideas will be dynamically added here -->
-                </tbody>
-            </table>
-            <div class="add-idea">
-                <h2>Add Your Idea</h2>
-                <input type="text" id="nameInput" placeholder="Your Name" required>
-                <textarea id="ideaInput" placeholder="Describe your idea..." rows="4" required></textarea>
-                <div class="button-group">
-                    <button onclick="addIdea()">Add Idea</button>
-                    <button class="clear-btn" onclick="clearInputs()">Clear</button>
+        <div class="content-wrapper">
+            <main class="main-content">
+                <header class="header">
+                    <div class="logo">💡</div>
+                    <h1>IDEA BOARD</h1>
+                    <div class="idea-counter">Total Ideas: <span id="ideaCount">0</span></div>
+                </header>
+                <table id="ideasTable">
+                    <thead>
+                        <tr>
+                            <th style="width: 20%;">Name</th>
+                            <th>Idea</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Ideas will be dynamically added here -->
+                    </tbody>
+                </table>
+                <div class="add-idea">
+                    <h2>Add Your Idea</h2>
+                    <input type="text" id="nameInput" placeholder="Your Name" required>
+                    <textarea id="ideaInput" placeholder="Describe your idea..." rows="4" required></textarea>
+                    <div class="button-group">
+                        <button onclick="addIdea()">Add Idea</button>
+                        <button class="clear-btn" onclick="clearInputs()">Clear</button>
+                    </div>
                 </div>
-            </div>
-        </main>
+            </main>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h2>Upcoming Events</h2>
+                    <ul class="events-list">
+                        <li>No upcoming events</li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
         <footer class="footer">
-            <p>&copy; 2026 Group Idea Board. Share your brilliant ideas!</p>
+            <p>&copy; 2026 Study Portal. Share your brilliant ideas!</p>
         </footer>
     </div>
 
