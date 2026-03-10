@@ -55,6 +55,22 @@ body {
     transform: translateY(-2px);
 }
 
+.dark-mode-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
 .container {
     background-color: #ffffff;
     border-radius: 0;
@@ -728,4 +744,164 @@ button:active {
     .calculate-gpa-btn {
         width: 100%;
     }
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .container {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .header {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .header h1 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode table {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode th {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode tbody tr:nth-child(even) {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode tbody tr:hover {
+    background-color: #333333;
+}
+
+body.dark-mode .add-idea {
+    background-color: #2a2a2a;
+    border: 1px solid #404040;
+}
+
+body.dark-mode .add-idea h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode input[type="text"],
+body.dark-mode textarea {
+    background-color: #333333;
+    border: 2px solid #555555;
+    color: #e0e0e0;
+}
+
+body.dark-mode input[type="text"]:focus,
+body.dark-mode textarea:focus {
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.1);
+}
+
+body.dark-mode .sidebar {
+    background-color: #2a2a2a;
+    border-left: 1px solid #404040;
+}
+
+body.dark-mode .sidebar-section h2 {
+    color: #e0e0e0;
+    border-bottom: 2px solid #666666;
+}
+
+body.dark-mode .events-list li {
+    color: #cccccc;
+    border-bottom: 1px solid #404040;
+}
+
+body.dark-mode .footer {
+    background-color: #2a2a2a;
+    border-top: 1px solid #404040;
+    color: #cccccc;
+}
+
+body.dark-mode .calculator-section,
+body.dark-mode .timer-section {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+    border: 2px solid #404040;
+}
+
+body.dark-mode .calculator-section h2,
+body.dark-mode .timer-section h2 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .gpa-container,
+body.dark-mode .timer-container {
+    background: #2a2a2a;
+    border: 1px solid #404040;
+}
+
+body.dark-mode .gpa-table {
+    background: #2a2a2a;
+}
+
+body.dark-mode .gpa-table th {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    color: #e0e0e0;
+}
+
+body.dark-mode .gpa-table td {
+    border-bottom: 1px solid #404040;
+}
+
+body.dark-mode .gpa-table tbody tr:hover {
+    background-color: #333333;
+}
+
+body.dark-mode .gpa-table input,
+body.dark-mode .gpa-table select {
+    background-color: #333333;
+    border: 1px solid #555555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .gpa-table input:focus,
+body.dark-mode .gpa-table select:focus {
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.1);
+}
+
+body.dark-mode .gpa-result {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    border-left: 4px solid #666666;
+}
+
+body.dark-mode .gpa-result-text {
+    color: #e0e0e0;
+}
+
+body.dark-mode .gpa-result-empty {
+    color: #cccccc;
+}
+
+body.dark-mode .timer-display {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    border: 2px solid #666666;
+    color: #e0e0e0;
+}
+
+body.dark-mode .input-field span {
+    color: #cccccc;
+}
+
+body.dark-mode .input-field input {
+    background-color: #333333;
+    border: 2px solid #555555;
+    color: #e0e0e0;
+}
+
+body.dark-mode .input-field input:focus {
+    border-color: #666666;
+    box-shadow: 0 0 0 3px rgba(102, 102, 102, 0.1);
 }
