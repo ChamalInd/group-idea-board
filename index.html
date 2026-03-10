@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Portal - IdeaBoard</title>
+    <title>Student Portal - IdeaBoard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="navbar-brand">💡 Study Portal</div>
+        <div class="navbar-brand">Student Portal</div>
         <ul class="navbar-menu">
             <li><a href="gpa-calculator.html">GPA Calculator</a></li>
             <li><a href="study-timer.html">Study Timer</a></li>
@@ -51,9 +51,13 @@
             <aside class="sidebar">
                 <div class="sidebar-section">
                     <h2>Upcoming Events</h2>
-                    <ul class="events-list">
+                    <ul class="events-list" id="eventsList">
                         <li>No upcoming events</li>
                     </ul>
+                    <div class="add-event">
+                        <input type="text" id="eventInput" placeholder="Add new event..." required>
+                        <button onclick="addEvent()">Add Event</button>
+                    </div>
                 </div>
             </aside>
         </div>

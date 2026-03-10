@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
     color: #333;
     min-height: 100vh;
     display: flex;
@@ -17,7 +17,7 @@ body {
 
 /* Navigation Bar styles */
 .navbar {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
     padding: 15px 40px;
     display: flex;
     justify-content: space-between;
@@ -99,7 +99,7 @@ body {
 
 /* Header styles */
 .header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
     color: white;
     padding: 30px 40px;
     text-align: center;
@@ -156,7 +156,7 @@ td {
 }
 
 th {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
     color: white;
     font-weight: 600;
     text-transform: uppercase;
@@ -252,7 +252,7 @@ tbody tr:hover {
 }
 
 .add-idea h2 {
-    color: #1e3a8a;
+    color: #800000;
     margin-bottom: 25px;
     font-size: 1.5em;
     font-weight: 600;
@@ -272,8 +272,8 @@ textarea {
 input[type="text"]:focus,
 textarea:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
 }
 
 textarea {
@@ -288,7 +288,7 @@ textarea {
 }
 
 button {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
     color: white;
     padding: 12px 30px;
     border: none;
@@ -299,13 +299,13 @@ button {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(30, 58, 138, 0.3);
+    box-shadow: 0 4px 15px rgba(128, 0, 0, 0.3);
 }
 
 button:hover {
-    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    background: linear-gradient(135deg, #600000 0%, #E6C200 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(30, 58, 138, 0.4);
+    box-shadow: 0 6px 20px rgba(128, 0, 0, 0.4);
 }
 
 button:active {
@@ -337,10 +337,10 @@ button:active {
 
 .sidebar-section h2 {
     font-size: 1.3em;
-    color: #1e3a8a;
+    color: #800000;
     margin-bottom: 15px;
     font-weight: 600;
-    border-bottom: 2px solid #3b82f6;
+    border-bottom: 2px solid #FFD700;
     padding-bottom: 10px;
 }
 
@@ -361,6 +361,43 @@ button:active {
     border-bottom: none;
 }
 
+.add-event {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-event input {
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.add-event input:focus {
+    outline: none;
+    border-color: #FFD700;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.1);
+}
+
+.add-event button {
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-event button:hover {
+    background: linear-gradient(135deg, #600000 0%, #E6C200 100%);
+    transform: translateY(-1px);
+}
+
 /* GPA Calculator Section */
 .calculator-section {
     margin-top: 40px;
@@ -371,7 +408,7 @@ button:active {
 }
 
 .calculator-section h2 {
-    color: #1e3a8a;
+    color: #800000;
     font-size: 1.8em;
     margin-bottom: 25px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -392,7 +429,7 @@ button:active {
 }
 
 .gpa-table thead {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: linear-gradient(135deg, #800000 0%, #FFD700 100%);
 }
 
 .gpa-table th {
@@ -425,8 +462,8 @@ button:active {
 .gpa-table input:focus,
 .gpa-table select:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
 }
 
 .gpa-remove-btn {
@@ -471,19 +508,19 @@ button:active {
 }
 
 .calculate-gpa-btn {
-    background: #3b82f6;
+    background: #800000;
     color: white;
 }
 
 .calculate-gpa-btn:hover {
-    background: #2563eb;
+    background: #600000;
 }
 
 .gpa-result {
-    background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+    background: linear-gradient(135deg, #f0e68c 0%, #fffacd 100%);
     padding: 20px;
     border-radius: 8px;
-    border-left: 4px solid #3b82f6;
+    border-left: 4px solid #FFD700;
     margin-top: 20px;
     min-height: 60px;
     display: flex;
@@ -494,7 +531,7 @@ button:active {
 .gpa-result-text {
     font-size: 1.5em;
     font-weight: 700;
-    color: #1e3a8a;
+    color: #800000;
     text-align: center;
 }
 

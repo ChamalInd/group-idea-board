@@ -151,4 +151,38 @@ window.addEventListener('load', () => {
     } else {
         darkModeToggle.textContent = '🌙';
     }
+    loadEvents();
 });
+
+// Function to load events from localStorage
+function loadEvents() {
+    const events = JSON.parse(localStorage.getItem('upcomingEvents')) || [];
+    const eventsList = document.getElementById('eventsList');
+    eventsList.innerHTML = '';
+    if (events.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'No upcoming events';
+        eventsList.appendChild(li);
+    } else {
+        events.forEach(event => {
+            const li = document.createElement('li');
+            li.textContent = event;
+            eventsList.appendChild(li);
+        });
+    }
+}
+
+// Function to add a new event
+function addEvent() {
+    const eventInput = document.getElementById('eventInput');
+    const eventText = eventInput.value.trim();
+    if (eventText === '') {
+        alert('Please enter an event.');
+        return;
+    }
+    const events = JSON.parse(localStorage.getItem('upcomingEvents')) || [];
+    events.push(eventText);
+    localStorage.setItem('upcomingEvents', JSON.stringify(events));
+    eventInput.value = '';
+    loadEvents();
+}
