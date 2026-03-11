@@ -17,43 +17,102 @@ const gradeToGPA = {
     'F': 0.0
 };
 
-// Function to add a course row
-function addCourseRow() {
+// Function to save courses to localStorage
+function saveCourses() {
     const tableBody = document.getElementById('gpaTableBody');
-    if (!tableBody) return; // Exit if element doesn't exist
+    if (!tableBody) return;
+
+    const rows = tableBody.querySelectorAll('tr');
+    const courses = [];
+
+    rows.forEach(row => {
+        const name = row.cells[0].querySelector('input').value;
+        const credits = row.cells[1].querySelector('input').value;
+        const grade = row.cells[2].querySelector('select').value;
+        courses.push({ name, credits, grade });
+    });
+
+    localStorage.setItem('gpaCourses', JSON.stringify(courses));
+}
+
+// Function to load courses from localStorage
+function loadCourses() {
+    const tableBody = document.getElementById('gpaTableBody');
+    if (!tableBody) return;
+
+    const savedCourses = JSON.parse(localStorage.getItem('gpaCourses'));
+    
+    if (savedCourses && savedCourses.length > 0) {
+        tableBody.innerHTML = ''; // Clear existing rows
+        savedCourses.forEach(course => {
+            addCourseRow(course.name, course.credits, course.grade);
+        });
+        calculateGPA(); // Recalculate if there's data
+    } else {
+        addCourseRow(); // Add one empty row if no data
+    }
+}
+
+// Function to add a course row
+function addCourseRow(name = '', credits = '3', grade = '') {
+    const tableBody = document.getElementById('gpaTableBody');
+    if (!tableBody) return;
 
     const newRow = tableBody.insertRow();
 
-    const courseNameCell = newRow.insertCell(0);
-    courseNameCell.innerHTML = '<input type="text" placeholder="Enter course name" required>';
+    const nameInput = document.createElement('input');
+    nameInput.type = 'text';
+    nameInput.placeholder = 'Enter course name';
+    nameInput.value = name;
+    nameInput.required = true;
+    nameInput.oninput = saveCourses;
+    newRow.insertCell(0).appendChild(nameInput);
 
-    const creditsCell = newRow.insertCell(1);
-    creditsCell.innerHTML = '<input type="number" placeholder="Credits" min="1" max="6" value="3" required>';
+    const creditsInput = document.createElement('input');
+    creditsInput.type = 'number';
+    creditsInput.placeholder = 'Credits';
+    creditsInput.min = '1';
+    creditsInput.max = '6';
+    creditsInput.value = credits;
+    creditsInput.required = true;
+    creditsInput.oninput = saveCourses;
+    newRow.insertCell(1).appendChild(creditsInput);
 
-    const gradeCell = newRow.insertCell(2);
-    gradeCell.innerHTML = `<select required>
-        <option value="">Select Grade</option>
-        <option value="A">A (4.0)</option>
-        <option value="A-">A- (3.7)</option>
-        <option value="B+">B+ (3.3)</option>
-        <option value="B">B (3.0)</option>
-        <option value="B-">B- (2.7)</option>
-        <option value="C+">C+ (2.3)</option>
-        <option value="C">C (2.0)</option>
-        <option value="C-">C- (1.7)</option>
-        <option value="D+">D+ (1.3)</option>
-        <option value="D">D (1.0)</option>
-        <option value="F">F (0.0)</option>
-    </select>`;
+    const gradeSelect = document.createElement('select');
+    gradeSelect.required = true;
+    gradeSelect.onchange = () => {
+        saveCourses();
+        calculateGPA();
+    };
+    
+    const grades = ['', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'D+', 'D', 'F'];
+    grades.forEach(g => {
+        const option = document.createElement('option');
+        option.value = g;
+        option.textContent = g === '' ? 'Select Grade' : `${g} (${gradeToGPA[g].toFixed(1)})`;
+        if (g === grade) option.selected = true;
+        gradeSelect.appendChild(option);
+    });
+    newRow.insertCell(2).appendChild(gradeSelect);
 
     const actionCell = newRow.insertCell(3);
-    actionCell.innerHTML = '<button class="gpa-remove-btn" onclick="removeCourseRow(this)">Remove</button>';
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'gpa-remove-btn';
+    removeBtn.textContent = 'Remove';
+    removeBtn.onclick = function() {
+        removeCourseRow(this);
+    };
+    actionCell.appendChild(removeBtn);
+
+    saveCourses();
 }
 
 // Function to remove a course row
 function removeCourseRow(btn) {
     if (confirm('Are you sure you want to remove this course?')) {
         btn.parentElement.parentElement.remove();
+        saveCourses();
+        calculateGPA();
     }
 }
 
@@ -64,57 +123,38 @@ function calculateGPA() {
 
     const rows = tableBody.querySelectorAll('tr');
 
-    if (rows.length === 0) {
-        alert('Please add at least one course.');
-        return;
-    }
-
     let totalCredits = 0;
     let totalPoints = 0;
-    let hasErrors = false;
+    let validRows = 0;
 
     for (let row of rows) {
-        const courseName = row.cells[0].querySelector('input').value.trim();
         const credits = parseFloat(row.cells[1].querySelector('input').value);
         const grade = row.cells[2].querySelector('select').value;
 
-        if (!courseName || !credits || !grade) {
-            alert('Please fill in all fields for each course.');
-            hasErrors = true;
-            break;
+        if (!isNaN(credits) && credits > 0 && grade) {
+            const gpaPoints = gradeToGPA[grade];
+            totalCredits += credits;
+            totalPoints += gpaPoints * credits;
+            validRows++;
         }
-
-        if (isNaN(credits) || credits <= 0) {
-            alert('Please enter valid credits (positive number).');
-            hasErrors = true;
-            break;
-        }
-
-        const gpaPoints = gradeToGPA[grade];
-        totalCredits += credits;
-        totalPoints += gpaPoints * credits;
     }
-
-    if (hasErrors) return;
-
-    const overallGPA = (totalPoints / totalCredits).toFixed(2);
 
     const resultDiv = document.getElementById('gpaResult');
-    if (resultDiv) {
-        resultDiv.innerHTML = `<div class="gpa-result-text">Overall GPA: <span style="color: #10b981; font-weight: bold;">${overallGPA}</span></div>`;
+    if (!resultDiv) return;
+
+    if (validRows === 0) {
+        resultDiv.innerHTML = '';
+        return;
     }
+
+    const overallGPA = (totalPoints / totalCredits).toFixed(2);
+    resultDiv.innerHTML = `<div class="gpa-result-text">Overall GPA: <span style="color: #10b981; font-weight: bold;">${overallGPA}</span></div>`;
 }
 
 // Initialize GPA calculator when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Add initial course row if on GPA calculator page
-    if (document.getElementById('gpaTableBody')) {
-        addCourseRow();
-    }
-});
+    loadCourses();
 
-// Dark Mode Toggle
-document.addEventListener('DOMContentLoaded', function() {
     const darkModeToggle = document.getElementById('darkModeToggle');
     if (darkModeToggle) {
         function toggleDarkMode() {
@@ -126,7 +166,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
         darkModeToggle.addEventListener('click', toggleDarkMode);
 
-        // Load dark mode preference on page load
         const darkMode = localStorage.getItem('darkMode') === 'true';
         if (darkMode) {
             document.body.classList.add('dark-mode');
